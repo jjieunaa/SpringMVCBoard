@@ -9,9 +9,9 @@ public interface BoardMapper {
 	// @Select(" select * from board where bno>0 ")
 	public List<BoardVO> boardVOList();
 	
-	public void insertBoardVO(BoardVO boardVO);
+	public int insertBoardVO(BoardVO boardVO);
 	
-	public void insertBoardVOSelectKey(BoardVO boardVO);
+	public int insertBoardVOSelectKey(BoardVO boardVO);
 	
 	public BoardVO selectBoardVO(Long bno);
 	

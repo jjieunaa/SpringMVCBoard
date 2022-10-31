@@ -12,13 +12,13 @@ public class BoardServiceImpl extends AbstractBoardService {
 	}
 
 	@Override
-	public void insertBoardVO(BoardVO boardVO) {
-
+	public int insertBoardVO(BoardVO boardVO) {
+		return 0;
 	}
 
 	@Override
-	public void insertBoardVOSelectKey(BoardVO boardVO) {
-
+	public int insertBoardVOSelectKey(BoardVO boardVO) {
+		return 0;
 	}
 
 	@Override

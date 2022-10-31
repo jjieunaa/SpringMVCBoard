@@ -22,11 +22,14 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@GetMapping("/list")
-	public void listBoardVO(Model model) {
+	public String listBoardVO(Model model) {
 		log.info("list");
-		model.addAttribute("list", boardService.boardVOList());
+		model.addAttribute("boardVOList", boardService.boardVOList());
+		
+		return "boardList";
 	}
 	
+	/*
 	@PostMapping("/insert")
 	public String insertBoardVO(BoardVO boardVO, RedirectAttributes rttr) {
 		log.info("등록: " + boardVO);
@@ -35,26 +38,45 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
+	*/
 	
-	@GetMapping("/select")
-	public void selectBoardVO(@RequestParam("bno") Long bno, Model model) {
-		model.addAttribute("boardVO", boardService.selectBoardVO(bno));
+	@GetMapping("boardInsert")
+	public String boardInsert() {
+		return "boardInsert";
 	}
 	
-	@PostMapping("/update")
+	@PostMapping("/boardInsertProc")
+	public String boardInsertProc(BoardVO boardVO, RedirectAttributes redirectAttributes) {
+		if (boardService.insertBoardVO(boardVO) > 0) {
+			redirectAttributes.addFlashAttribute("result", "success");
+		}
+		
+		// return "redirect:/board/list";
+		return "redirect:/";
+	}
+	
+	@GetMapping("/select")
+	public String selectBoardVO(@RequestParam("bno") Long bno, Model model) {
+				model.addAttribute("boardVO", boardService.selectBoardVO(bno));
+				
+				return "boardUpdate";
+			}
+	
+	@PostMapping("/updateProc")
 	public String updateBoardVO(BoardVO boardVO, RedirectAttributes rttr) {		
 		if (boardService.updateBoardVO(boardVO) > 0) {
 			rttr.addFlashAttribute("result", "success");
 		}		
-		return "redirect:/board/list";
+		// return "redirect:/board/list";
+		return "redirect:/";
 	}
 	
-	@PostMapping("/delete")
+	@GetMapping("/delete")
 	public String deleteBoardVO(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
 		if (boardService.deleteBoardVO(bno) > 0) {
 			rttr.addFlashAttribute("result", "success");
 		}		
-		return "redirect:/board/list";
+		return "redirect:/";
 	}
 
 }
