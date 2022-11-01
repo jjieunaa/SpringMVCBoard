@@ -29,9 +29,29 @@ $(function() {
 		}
 	});
 	
-	// 목록 버튼 클릭 시 목록 화면으로 이동
-	$("#listBtn").click(function(event) {
-		location.href = "/";
-	});
+	// 리스트 페이지에서 제목 클릭 시 조회 페이지로 이동
+	formSetting(".selectLink", ["select"], "/board/select");
 	
+	// 리스트 페이지에서 페이지 번호 링크 처리
+	formSetting(".pageNumLink", ["list"], "/board/list");
+	
+	// 조회 페이지에서 목록 버튼 클릭 처리
+	formSetting("#listBtn", ["list"], "/board/list");
+	
+	// 검색 버튼 클릭 시 검색 폼 submit
+	$("#searchBtn").click(function(event){
+		$("#searchForm").submit();
+	});
 });
+
+// 엘리먼트 타입, CSS 클래스 명, Input 엘리먼트의 name 속성의 값들, 이동할 경로
+function formSetting(cssType, nameValues, actionURI) {
+	$(cssType).click(function(event){
+		event.preventDefault();
+		$("input[name='pageNum']").val($(this).attr("pagenum"));
+		$("input[name='action']").val(nameValues[0]);
+		$("input[name='bno']").val($(this).attr("bno"));
+		$("#actionForm").attr("action", actionURI);
+		$("#actionForm").submit();
+	});
+}
