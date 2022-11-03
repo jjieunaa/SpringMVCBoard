@@ -22,5 +22,8 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="kr.kwangan2.springmvcboard" />
+	
+	<!-- swagger -->
+    <beans:bean id="swagger2Config" class="kr.kwangan2.springmvcboard.config.SwaggerConfig"></beans:bean>
 		
 </beans:beans>

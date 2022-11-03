@@ -17,8 +17,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				Board List Page
-				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register
-					New Board</button>
+				<button id='regBtn' type="button" class="btn btn-xs pull-right">Register New Board</button>
 			</div>
 
 			<div class="panel-body">
@@ -51,7 +50,6 @@
 
 				<div class='row'>
 					<div class="col-lg-12">
-						<form id='searchForm' action="/board/list" method='get'>
 							<select name='type'>
 								<option value=""
 									<c:out value="${pageCalc.criteria.type == null?'selected':''}"/>>--</option>
@@ -72,13 +70,10 @@
 									or 내용 or 작성자</option>
 							</select> 
  
-								<input type='text' name='keyword' value='<c:out value="${pageCalc.criteria.keyword}"/>' />
-								<input type='hidden' name='pageNum' value='<c:out value="${pageCalc.criteria.pageNum}"/>' />
-								<input type='hidden' name='amount' value='<c:out value="${pageCalc.criteria.amount}"/>' />
+							<input type='text' name='keyword' value="${pageCalc.criteria.keyword}" />
+							<input type='hidden' name='pn' value="${pageCalc.criteria.pageNum}" />
 							
 							<button id="searchBtn" class='btn btn-default'>Search</button>
-							
-						</form>
 					</div>
 				</div>
 

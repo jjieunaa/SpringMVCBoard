@@ -29,29 +29,41 @@ $(function() {
 		}
 	});
 	
-	// 리스트 페이지에서 제목 클릭 시 조회 페이지로 이동
-	formSetting(".selectLink", ["select"], "/board/select");
+	// 목록 페이지에서 제목 클릭 시 조회 페이지로 이동
+	addClickListener(".selectLink", "selectFromList", "/board/select");
 	
-	// 리스트 페이지에서 페이지 번호 링크 처리
-	formSetting(".pageNumLink", ["list"], "/board/list");
+	// 목록 페이지에서 페이지 번호 링크 처리
+	addClickListener(".pageNumLink", "listFromPaging", "/board/list");
 	
-	// 조회 페이지에서 목록 버튼 클릭 처리
-	formSetting("#listBtn", ["list"], "/board/list");
+	// 조회 페이지에서 목록 버튼 클릭 시 목록 페이지로 이동
+	addClickListener("#listBtn", "listFromSelect", "/board/list");
 	
-	// 검색 버튼 클릭 시 검색 폼 submit
-	$("#searchBtn").click(function(event){
-		$("#searchForm").submit();
+	// 목록 페이지에서 검색 버튼 클릭 시 목록 페이지로 이동
+	addClickListener("#searchBtn", "listFromSearch", "/board/list");
+	
+	// 입력폼 submit/reset
+	$(".boardInsertBtns").click(function() {
+		if ($(this).attr("id")=="boardInsertSubmitBtn") {
+			$("#boardInsertForm").submit();
+		} else if ($(this).attr("id")=="boardInsertResetBtn") {
+			document.forms["boardInsertForm"].reset();
+		}		
 	});
+
 });
 
-// 엘리먼트 타입, CSS 클래스 명, Input 엘리먼트의 name 속성의 값들, 이동할 경로
-function formSetting(cssType, nameValues, actionURI) {
-	$(cssType).click(function(event){
-		event.preventDefault();
-		$("input[name='pageNum']").val($(this).attr("pagenum"));
-		$("input[name='action']").val(nameValues[0]);
+// 이벤트 타켓 엘리먼트, 명령, 이동할 경로
+function addClickListener(element, command, action) {
+	$(element).click(function(event){
+		event.preventDefault();		
+		$("input[name='pageNum']").val($(this).attr("pageNum"));
 		$("input[name='bno']").val($(this).attr("bno"));
-		$("#actionForm").attr("action", actionURI);
+		$("input[name='type']").val($("select[name='type']").val());
+		$("input[name='keyword']").val($("input[name='keyword']").val());		
+		if (command=="listFromSearch") {
+			$("input[name='pageNum']").val($("input[name='pn']").val());
+		}		
+		$("#actionForm").attr("action", action);
 		$("#actionForm").submit();
-	});
+	})
 }

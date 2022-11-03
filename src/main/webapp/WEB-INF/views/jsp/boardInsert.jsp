@@ -16,9 +16,10 @@
       <div class="panel-heading">Board Insert</div>
       <div class="panel-body">
 
-        <form role="form" action="/board/boardInsertProc" method="post">
+        <form id="boardInsertForm" role="form" action="/board/boardInsertProc" method="post">
           <div class="form-group">
-            <label>Title</label> <input class="form-control" name='title'>
+            <label>Title</label>
+            <input class="form-control" name='title'>
           </div>
 
           <div class="form-group">
@@ -27,11 +28,12 @@
           </div>
 
           <div class="form-group">
-            <label>Writer</label> <input class="form-control" name='writer'>
+			<label>Writer</label>
+            <input class="form-control" name='writer'>
           </div>
-          <button type="submit" class="btn btn-default">Submit
-            Button</button>
-          <button type="reset" class="btn btn-default">Reset Button</button>
+          
+          <button id="boardInsertSubmitBtn" class="boardInsertBtns btn btn-default">Submit Button</button>
+          <button id="boardInsertResetBtn" class="boardInsertBtns btn btn-default">Reset Button</button>
         </form>
 
       </div>

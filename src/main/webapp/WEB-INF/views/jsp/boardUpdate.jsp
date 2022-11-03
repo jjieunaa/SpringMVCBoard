@@ -6,6 +6,64 @@
 
 <%@include file="../jsp/includes/header.jsp"%>
 
+<script src="/resources/js/reply.js"></script>
+
+<script>
+	var bnoValue = "<c:out value='${boardVO.bno}' />";
+
+	// insert 테스트
+	/*
+	$(function() {	
+		replyService.insertReplyVO(
+			{reply:"JS Test", replyer:"tester", bno:bnoValue},
+			function(result) {
+				alert("result: " + result);
+			}
+		);		
+	});
+	*/
+	
+	// list 테스트
+	/*
+	replyService.listReplyVO(
+			{bno:bnoValue, page:1},
+			function(list) {
+				var listLenth =list.length;
+				for (var i=0, len=listLenth||0; i<len; i++) {
+					console.log(list[i]);
+				}
+			}
+	);
+	*/
+	
+	// delete 테스트
+	/*
+	replyService.deleteReplyVO(
+		9,
+		function(count) {
+			console.log(count);
+		}
+	);
+	*/
+	
+	// update 테스트
+	/*
+	replyService.updateReplyVO({
+		rno: 10,
+		bno: bnoValue,
+		reply: "수정된 댓글",
+		replyer: "수정한 사람"
+	}, function(result) {
+		alert(result);
+	})
+	*/
+	
+	// selecet 테스트
+	replyService.selectReplyVO(10, function(data) {
+		console.log(data);
+	})
+</script>
+
 <div class="row">
   <div class="col-lg-12">
     <h1 class="page-header">Board Update</h1>
