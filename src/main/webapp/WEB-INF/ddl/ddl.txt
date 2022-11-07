@@ -45,6 +45,8 @@ VALUES (seq_board.nextval, '제목2', '내용2', '작성자2');
 INSERT INTO board(bno, title, content, writer)
 VALUES (seq_board.nextval, '제목3', '내용3', '작성자3');
 
+
+
 # 댓글
 CREATE TABLE reply (
 	rno number(10,0),
@@ -56,6 +58,8 @@ CREATE TABLE reply (
 );
 
 CREATE SEQUENCE seq_reply INCREMENT BY 1;
+
+CREATE INDEX idx_reply ON reply (bno DESC, rno ASC);
 
 ALTER TABLE reply ADD CONSTRAINT pk_reply
 PRIMARY KEY (rno);

@@ -1,7 +1,5 @@
 package kr.kwangan2.springmvcboard.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.kwangan2.springmvcboard.domain.Criteria;
+import kr.kwangan2.springmvcboard.domain.ReplyPageDTO;
 import kr.kwangan2.springmvcboard.domain.ReplyVO;
 import kr.kwangan2.springmvcboard.service.ReplyService;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
-import oracle.net.ano.Service;
 
 @RestController
 @RequestMapping("/replies/")
@@ -51,7 +49,7 @@ public class ReplyController {
 						MediaType.APPLICATION_XML_VALUE
 				}
 			)
-	public ResponseEntity<List<ReplyVO>> listReplyVO(
+	public ResponseEntity<ReplyPageDTO> listReplyVO(
 				@PathVariable("bno") Long bno,
 				@PathVariable("page") int page
 			) {		

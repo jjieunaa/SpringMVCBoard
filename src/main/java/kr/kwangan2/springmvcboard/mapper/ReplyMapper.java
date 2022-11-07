@@ -12,7 +12,7 @@ public interface ReplyMapper {
 	public List<ReplyVO> listReplyVO(
 				@Param("criteria") Criteria criteria,
 				@Param("bno") Long bno
-			);
+	);
 	
 	public int replyVOListCount(Long bno);
 	
